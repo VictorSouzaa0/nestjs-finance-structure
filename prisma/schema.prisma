@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id                Int       @id @default(autoincrement())
+  email             String    @unique
+  name              String
+  lastname         String
+  password          String
+  currently_balance Account[]
+}
+
+model Account {
+  id      Int    @id @default(autoincrement())
+  balance Int
+  userId  Int?
+  user    User?  @relation(fields: [userId], references: [id])
+  bills   Bill[]
+}
+
+model Bill {
+  id            Int      @id @default(autoincrement())
+  bills_name    String
+  bills_balance Int
+  when_used     DateTime
+  accountId     Int?
+  account       Account? @relation(fields: [accountId], references: [id])
+}
