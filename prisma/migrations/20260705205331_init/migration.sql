@@ -11,8 +11,8 @@ CREATE TABLE "User" (
 CREATE TABLE "Account" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "balance" INTEGER NOT NULL,
-    "userId" INTEGER,
-    CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -27,3 +27,6 @@ CREATE TABLE "Bill" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Account_userId_key" ON "Account"("userId");

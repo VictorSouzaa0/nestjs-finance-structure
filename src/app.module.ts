@@ -6,10 +6,12 @@ import { UserModule } from './user/user.module';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
+import { AccountService } from './account/account.service';
+import { BillModule } from './bill/bill.module';
 
 @Module({
-  imports: [AccountModule, PrismaModule, UserModule,ConfigModule.forRoot()],
+  imports: [AccountModule, PrismaModule, UserModule,ConfigModule.forRoot(), BillModule],
   controllers: [AppController],
-  providers: [AppService, PrismaService],
+  providers: [AppService, PrismaService, AccountService],
 })
 export class AppModule {}

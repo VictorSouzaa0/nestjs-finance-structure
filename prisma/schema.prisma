@@ -14,13 +14,13 @@ model User {
   name              String
   lastname         String
   password          String
-  currently_balance Account[]
+  account Account?
 }
 
 model Account {
   id      Int    @id @default(autoincrement())
   balance Int
-  userId  Int?
+  userId  Int @unique
   user    User?  @relation(fields: [userId], references: [id])
   bills   Bill[]
 }
