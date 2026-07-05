@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post,Put, Query, Param, ParseIntPipe } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post,Put, Query, Param, ParseIntPipe, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserModel } from 'generated/prisma/models';
@@ -42,4 +42,9 @@ export class UserController {
     return this.userService.updateUser(id,updateUserDto)
   }
 
+  @Delete(':id')
+  @HttpCode(204)
+  async deleteUser(@Param('id', ParseIntPipe) id:number): Promise<UserModel>{
+    return this.userService.deleteUser({id: Number(id)})
+  }
 }
