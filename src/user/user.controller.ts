@@ -6,11 +6,11 @@ import { User } from 'generated/prisma/browser';
 import { listUserDto } from './dtos/list-user.dto';
 import { updateUserDto } from './dtos/update-user.dto';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('users')
+  @Get()
   @HttpCode(200)
   async getAllUsers(@Query() query: listUserDto): Promise<User[]>{
     return this.userService.users({

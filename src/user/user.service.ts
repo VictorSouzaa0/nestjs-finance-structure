@@ -8,7 +8,6 @@ import { updateUserDto } from './dtos/update-user.dto';
 export class UserService {
     constructor(private prisma: PrismaService,){}
 
-
     async user(
         userWhereInput: Prisma.UserWhereUniqueInput
     ): Promise <User| null> {
@@ -50,7 +49,13 @@ export class UserService {
                 email: data.email,
                 name: data.name,
                 lastname: data.lastname,
-                password: hash
+                password: hash,
+
+                account :{
+                    create:{
+                        balance: 0
+                    }
+                }
             }
         })
         
