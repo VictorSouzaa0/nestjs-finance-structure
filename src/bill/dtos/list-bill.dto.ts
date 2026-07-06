@@ -3,7 +3,7 @@ import { IsOptional } from "class-validator";
 export class listBillDto{
 
     @IsOptional()
-    readonly id?: number
+    readonly id!: number
 
     @IsOptional()
     readonly bills_name?: string
@@ -12,7 +12,7 @@ export class listBillDto{
     readonly bills_balance?: number
 
     @IsOptional()
-    readonly when_used?: number
+    readonly when_used?: Date
 
     @IsOptional()
     readonly accountId?: number
