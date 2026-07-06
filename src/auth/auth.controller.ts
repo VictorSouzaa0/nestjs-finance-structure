@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Post, Request, UnauthorizedException, UseGuards, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { signDto } from './dtos/sign.dto';
 import { AuthModule } from './auth.module';
@@ -16,5 +16,11 @@ export class AuthController {
     }
 
     return this.authService.login(user)
+  }
+  
+  @UseGuards()
+  @Get('profile')
+  getProfile(@Request()req){
+    return req.user
   }
 }
