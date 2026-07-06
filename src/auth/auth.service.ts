@@ -14,7 +14,7 @@ export class AuthService {
 
     async validateUser(
         email: string,
-        pass: string
+        pass: string 
     ): Promise<any>{
         const user = await this.prsima.user.findUnique({
             where : {email: email}
