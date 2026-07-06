@@ -20,6 +20,30 @@ export class BillService {
         })
     }
 
+    async allBills(params:{
+        skip?: number;
+        take?:number;
+        cursor?:Prisma.BillWhereUniqueInput;
+        where?:Prisma.BillWhereUniqueInput;
+        orderBy?:Prisma.BillOrderByWithRelationInput;
+    }): Promise<any[]>{
+        const{skip, take, cursor, where, orderBy} = params;
+        return await this.prisma.bill.findMany({
+            skip,
+            take,
+            cursor,
+            where,
+            orderBy,
+            select : {
+                id: true,
+                bills_name: true,
+                bills_balance: true,
+                when_used: true,
+                accountId: true
+            }
+        });
+    }
+
     async deleteBill(where: Prisma.BillWhereUniqueInput): Promise <Bill>{
         return await this.prisma.bill.delete({where})
     }
