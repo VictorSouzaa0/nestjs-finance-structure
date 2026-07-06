@@ -8,9 +8,10 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { AccountService } from './account/account.service';
 import { BillModule } from './bill/bill.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [AccountModule, PrismaModule, UserModule,ConfigModule.forRoot(), BillModule],
+  imports: [AccountModule, PrismaModule, UserModule,ConfigModule.forRoot(), BillModule, AuthModule],
   controllers: [AppController],
   providers: [AppService, PrismaService, AccountService],
 })
