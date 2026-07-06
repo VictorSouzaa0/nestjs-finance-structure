@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Bill } from 'generated/prisma/browser';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { createBillDto } from './dtos/create-bill.dto';
+import { Prisma } from 'generated/prisma/client';
 
 @Injectable()
 export class BillService {
@@ -17,5 +18,9 @@ export class BillService {
 
             }
         })
+    }
+
+    async deleteBill(where: Prisma.BillWhereUniqueInput): Promise <Bill>{
+        return await this.prisma.bill.delete({where})
     }
 }
