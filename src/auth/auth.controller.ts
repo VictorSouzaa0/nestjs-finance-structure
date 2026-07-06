@@ -11,7 +11,7 @@ export class AuthController {
   async signIn(@Body() signDto: signDto){
     const user = await this.authService.validateUser(signDto.email, signDto.password)
 
-    if(user!){
+    if(!user){
       throw new UnauthorizedException('incorrect email or passowrd')
     }
 

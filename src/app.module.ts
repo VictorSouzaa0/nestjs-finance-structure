@@ -11,7 +11,7 @@ import { BillModule } from './bill/bill.module';
 import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [AccountModule, PrismaModule, UserModule,ConfigModule.forRoot(), BillModule, AuthModule],
+  imports: [AccountModule, PrismaModule, UserModule,ConfigModule.forRoot({isGlobal:true}), BillModule, AuthModule],
   controllers: [AppController],
   providers: [AppService, PrismaService, AccountService],
 })
