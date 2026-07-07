@@ -1,8 +1,7 @@
 import { Body, Controller, Post, Request, UnauthorizedException, UseGuards, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { signDto } from './dtos/sign.dto';
-import { AuthModule } from './auth.module';
-
+import { AuthGuard } from './auth.guard';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -18,7 +17,7 @@ export class AuthController {
     return this.authService.login(user)
   }
   
-  @UseGuards()
+  @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request()req){
     return req.user
